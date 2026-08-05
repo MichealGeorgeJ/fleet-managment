@@ -20,7 +20,7 @@ export class ErrorMiddleware {
             new ResponseHandler(res).sendError(e.statusCode, e.message);
             return;
         }
-
+console.log(e);
         new ResponseHandler(res).sendError(StatusCode.INTERNAL_SERVER_ERROR, "Internal Server Error");
 
     };

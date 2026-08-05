@@ -1,6 +1,10 @@
-import type { PoolClient, QueryResult, QueryResultRow } from "pg";
+import type { PoolClient } from "pg";
 import { DatabaseService } from "../../core/database/services/db.service";
 
+export interface QueryResult {
+    rows: any[];
+    rowCount: number;
+}
 export class BaseRepo {
     private readonly db: DatabaseService;
 
@@ -8,11 +12,15 @@ export class BaseRepo {
         this.db = new DatabaseService();
     }
 
-    protected async query<T extends QueryResultRow = QueryResultRow>(
+    protected async query(
         sql: string,
         params: Array<any> = []
-    ): Promise<QueryResult<T>> {
-        return this.db.query<T>(sql, params);
+    ): Promise<QueryResult> {
+        const result = await this.db.query(sql, params);
+        return {
+            rows: result.rows,
+            rowCount: result.rowCount ?? 0
+        };
     }
 
     protected async transaction<T>(

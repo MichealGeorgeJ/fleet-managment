@@ -2,6 +2,7 @@ import express from "express";
 import { router } from "./routes/index";
 import { errorHandler } from "./shared/middlewares/error.middleware";
 import { config } from "dotenv";
+import { ENV } from "./shared/constants/env.constant";
 
 config();
 
@@ -13,8 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(router);
 app.use(errorHandler);
 
-app.listen(3000, () => {
-    console.log("Server is running on port 3000");
+app.listen(ENV.PORT, () => {
+    console.log(`Server is running on port ${ENV.PORT}`);
+    console.log(`Documentation is available at http://localhost:${ENV.PORT}/docs`)
 });
-
-

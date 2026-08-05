@@ -1,5 +1,5 @@
 import type { Response } from "express";
-import { StatusCode } from "../enum/status-code.enum.js";
+import { StatusCode } from "../enum/status-code.enum";
 
 export class ResponseHandler {
 

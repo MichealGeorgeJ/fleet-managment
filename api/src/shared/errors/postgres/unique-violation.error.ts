@@ -1,5 +1,5 @@
 import type { DatabaseError } from "pg";
-import { ConflictError } from "../common/conflict-error";
+import { ConflictError } from "../common/conflict.error";
 
 export class UniqueViolationError extends ConflictError {
 

@@ -12,8 +12,8 @@ export class Branches {
         address: 'address',
         phone: 'phone',
         status: 'status',
-        created_at: 'created_at',
-        updated_at: 'updated_at'
+        createdAt: 'created_at',
+        updatedAt: 'updated_at'
     });
 
 
