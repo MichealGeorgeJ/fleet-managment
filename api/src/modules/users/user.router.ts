@@ -13,6 +13,7 @@ export class UserRouter extends BaseRouter {
     protected register(): void {
         const c = this.controller;
         this.router.post("/", validateCreateUser, asyncHandler(c.create.bind(c)));
+        this.router.get("/", asyncHandler(c.getAll.bind(c)));
         this.router.get("/:id", asyncHandler(c.getById.bind(c)));
         this.router.patch("/:id", validateUpdateUser, asyncHandler(c.update.bind(c)));
         this.router.delete("/:id", asyncHandler(c.delete.bind(c)));
