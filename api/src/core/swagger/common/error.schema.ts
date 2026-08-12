@@ -1,6 +1,6 @@
-import { StatusCode } from "../../shared/enum/status-code.enum";
-import { registry } from "./registry";
-import { z } from "./zod";
+import { StatusCode } from "../../../shared/enum/status-code.enum";
+import { registry } from "../registry";
+import { z } from "../zod";
 
 export class ErrorSchema {
     private static errorObject(code: number, msg: string) {

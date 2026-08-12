@@ -1,4 +1,5 @@
 import { Nullable } from "../../shared/types/common";
+import { IUser } from "../users/user.type";
 
 export interface ISession {
     id: Nullable<number>;
@@ -16,7 +17,7 @@ export interface ISession {
 }
 
 export interface ICreateSession {
-    userId: string;
+    userId: number;
     deviceName: string;
     deviceFingerprint: string;
     ipAddress: string;
@@ -26,9 +27,28 @@ export interface ICreateSession {
 }
 
 export interface ISessionEvent {
-    id: Nullable<string>;
-    sessionId: Nullable<string>;
-    eventType: Nullable<string>;
+    id: Nullable<number>;
+    sessionId: Nullable<number>;
+    eventType: Nullable<number>;
     createdAt: Nullable<Date>;
+}
+
+export interface ISessionEventCreate {
+    sessionId: number;
+    eventType: number;
+}
+
+export interface ITokenPayload {
+    id?: Nullable<number>;
+    deviceName: string;
+    ipAddress: string;
+    platform: string;
+    userAgent: string;
+    deviceFingerprint: string;
+    isRevoked: boolean;
+    user: IUser;
+    iat?: string;
+    nbf?: string;
+    exp?: string;
 }
 

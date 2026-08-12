@@ -1,7 +1,7 @@
-import { z } from "./zod";
-import { registry } from "./registry";
-import { ErrorSchema } from "./error.schema";
-import { SuccessSchema } from "./sucess.schema";
+import { z } from "../zod";
+import { registry } from "../registry";
+import { ErrorSchema } from "../common/error.schema";
+import { SuccessSchema } from "../common/sucess.schema";
 
 
 export class UserDocs {

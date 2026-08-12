@@ -1,2 +1,3 @@
-import "./user.schema"
-import "./branch.schema"
+import "./apis/user.api"
+import "./apis/branch.api"
+import "./apis/auth.api"

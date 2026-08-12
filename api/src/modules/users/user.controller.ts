@@ -8,8 +8,6 @@ export class UserController extends BaseController {
         super();
     }
 
-
-
     create = async (req: Request, res: Response): Promise<void> => {
         const user = await this.userService.create(req.body);
         return this.response(res).created(user);

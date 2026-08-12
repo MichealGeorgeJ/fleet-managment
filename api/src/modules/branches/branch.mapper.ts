@@ -1,10 +1,10 @@
 import { Tables } from "../../core/database/tables";
 import { Value } from "../../shared/utils/value";
-import { IBranch } from "./branche.type";
+import { IBranch } from "./branch.type";
 
 export class BranchMapper {
     static toBranch(row: Record<string, any>): IBranch {
-        const {columns} = Tables.branches;
+        const { columns } = Tables.branches;
         return {
             id: Value.of(row[columns.id]).toNullableNumber(),
             name: Value.of(row[columns.name]).toNullableString(),

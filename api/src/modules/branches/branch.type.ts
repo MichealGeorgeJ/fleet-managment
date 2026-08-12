@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { branchRequestSchema, branchCreatePayloadSchema, branchUpdatePayloadSchema } from "./branche.schema";
+import { branchRequestSchema, branchCreatePayloadSchema, branchUpdatePayloadSchema } from "./branch.schema";
 import { Nullable } from "../../shared/types/common";
 
 export type BranchRequest = z.infer<typeof branchRequestSchema>;

@@ -1,9 +1,9 @@
 import { BaseController } from "../../shared/base/base.controller";
 import type { Request, Response } from "express";
-import type { BranchService } from "./branche.service";
+import type { BranchService } from "./branch.service";
 
 export class BranchController extends BaseController {
-    
+
     constructor(private readonly branchService: BranchService) {
         super();
     }

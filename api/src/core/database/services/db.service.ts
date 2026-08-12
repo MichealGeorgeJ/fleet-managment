@@ -1,5 +1,5 @@
 import { Pool, type PoolClient, type QueryResult, type QueryResultRow, DatabaseError } from "pg";
-import { ENV } from "../../../shared/constants/env.constant";
+import { ENV } from "../../config/env.constant";
 import { PostgresErrorMapper } from "../../../shared/errors/postgres/postgres-error.mapper";
 
 export class DatabaseService {

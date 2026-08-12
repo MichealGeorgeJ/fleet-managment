@@ -1,5 +1,5 @@
-import { z } from "./zod";
-import { registry } from "./registry";
+import { z } from "../zod";
+import { registry } from "../registry";
 
 export class SuccessSchema {
     static readonly success = (data?: z.ZodTypeAny) => registry.register(

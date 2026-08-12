@@ -1,11 +1,11 @@
 import { Tables } from "../../core/database/tables";
 import { BaseRepo } from "../../shared/base/base.repo";
-import { ISessionEvent } from "./auth.type";
+import { ISessionEvent, ISessionEventCreate } from "./auth.type";
 import { SessionEventMapper } from "./session-event.mapper";
 
 export class SessionEventRepo extends BaseRepo {
 
-    async create(event: ISessionEvent): Promise<ISessionEvent> {
+    async create(event: ISessionEventCreate): Promise<ISessionEvent> {
         const { columns, tableName } = Tables.sessionEvents;
 
         const query = `

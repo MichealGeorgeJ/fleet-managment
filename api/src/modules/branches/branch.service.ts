@@ -1,6 +1,6 @@
 import { BranchStatus } from "../../shared/enum/branch.enum";
-import type { BranchRepo } from "./branche.repo";
-import type { BranchRequest, IBranch } from "./branche.type";
+import type { BranchRepo } from "./branch.repo";
+import type { BranchRequest, IBranch } from "./branch.type";
 
 export class BranchService {
 

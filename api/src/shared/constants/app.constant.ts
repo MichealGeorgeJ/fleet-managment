@@ -1,0 +1,5 @@
+export const APP_CONSTANTS = {
+    MIN_PASSWORD_LENGTH: 6,
+    ACCESS_TOKEN_EXP: 15 * 60,
+    REFRESH_TOKEN_EXP: 7 * 24 * 60 * 60,
+}

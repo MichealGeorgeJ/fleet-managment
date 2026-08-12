@@ -32,6 +32,18 @@ export class UserRepo extends BaseRepo {
         return UserMapper.toUser(result.rows[0]);
     }
 
+    async updatePassword(id: number, passwordHash: string): Promise<IUser> {
+        const { tableName, columns } = Tables.users
+
+        const query = `UPDATE ${tableName} SET ${columns.passwordHash} = $1 WHERE ${columns.id} = $2 RETURNING *`;
+        const result = await this.query(query, [passwordHash, id]);
+
+        if (Value.of(result.rows[0]).isEmpty()) {
+            throw new NotFoundError(`User not found with id: ${id}`);
+        }
+        return UserMapper.toUser(result.rows[0]);
+    }
+
 
     async delete(id: number, status: number): Promise<IUser> {
         const { tableName, columns } = Tables.users

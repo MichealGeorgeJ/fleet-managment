@@ -4,7 +4,7 @@ import { BranchStatus } from "../../shared/enum/branch.enum";
 import { NotFoundError } from "../../shared/errors/common/not-found.error";
 import { Value } from "../../shared/utils/value";
 import { BranchMapper } from "./branch.mapper";
-import { BranchCreatePayload, BranchUpdatePayload, IBranch } from "./branche.type";
+import { BranchCreatePayload, BranchUpdatePayload, IBranch } from "./branch.type";
 
 export class BranchRepo extends BaseRepo {
     constructor() {

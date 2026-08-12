@@ -1,8 +1,8 @@
 import type { Router } from "express";
-import { BranchController } from "./branche.controller";
-import { BranchRepo } from "./branche.repo";
-import { BranchRouter } from "./branche.router";
-import { BranchService } from "./branche.service";
+import { BranchController } from "./branch.controller";
+import { BranchRepo } from "./branch.repo";
+import { BranchRouter } from "./branch.router";
+import { BranchService } from "./branch.service";
 
 export function createBrancheRoutes(): Router {
 

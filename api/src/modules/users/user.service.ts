@@ -1,3 +1,4 @@
+import { BUSINESS_CONSTANTS } from "../../shared/constants/business.constants";
 import { UserStatus } from "../../shared/enum/users.enum";
 import { KeyGen } from "../../shared/utils/key-gen";
 import { PasswordUtil } from "../../shared/utils/password";
@@ -14,8 +15,7 @@ export class UserService {
         const hashedPassword = await PasswordUtil.hash(KeyGen.uniqueKey())
 
         //Generate employee code
-        const userCount = await this.userRepo.countByBranchId(data.branchId);
-        const employeeCode = `FLEET${data.branchId}-${userCount + 1}`.toUpperCase();
+        const employeeCode = await this.generateEmployeeCode(data.branchId);
 
         const user = { ...data, employeeCode, status: UserStatus.ACTIVE, passwordHash: hashedPassword };
 
@@ -26,6 +26,11 @@ export class UserService {
 
     async update(id: number, data: UpdateUser): Promise<IUser> {
         return this.userRepo.update(id, data);
+    }
+
+    async updatePassword(id: number, password: string): Promise<IUser> {
+        const hashedPassword = await PasswordUtil.hash(password);
+        return this.userRepo.updatePassword(id, hashedPassword);
     }
 
     async delete(id: number, status: number): Promise<IUser> {
@@ -42,6 +47,11 @@ export class UserService {
 
     async getAll(): Promise<IUser[]> {
         return this.userRepo.getAll();
+    }
+
+    private async generateEmployeeCode(branchId: number) {
+        const userCount = await this.userRepo.countByBranchId(branchId);
+        return `${BUSINESS_CONSTANTS.EMPLOYEE_CODE_PREFIX}${branchId}-${userCount + 1}`.toUpperCase();
     }
 
 }

@@ -37,12 +37,10 @@ export class PasetoUtils {
         return publicKey;
     }
 
-    static async generateToken(payload: any): Promise<string> {
-
-        const expiresInSeconds = 24 * 60 * 60 // 1 day
+    static async generateToken(payload: any, exp: number = 24 * 60 * 60): Promise<string> {
 
         const now = new Date();
-        const expiresAt = new Date(now.getTime() + expiresInSeconds * 1000);
+        const expiresAt = new Date(now.getTime() + exp * 1000);
 
         const fullPayload = {
             ...payload,
@@ -88,5 +86,3 @@ export class PasetoUtils {
         console.log('Save these keys in your .env file!');
     };
 }
-
-PasetoUtils.generateAndPrintKeys();

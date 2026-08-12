@@ -45,10 +45,10 @@ export class SessionRepo extends BaseRepo {
         return SessionMapper.toSession(result.rows[0]);
     }
 
-    async getByToken(token: string): Promise<ISession> {
+    async getByRefreshToken(refreshToken: string): Promise<ISession> {
         const { columns, tableName } = Tables.sessions;
         const query = `SELECT * FROM ${tableName} WHERE ${columns.refreshToken} = $1`;
-        const result = await this.query(query, [token]);
+        const result = await this.query(query, [refreshToken]);
         if (Value.of(result.rows[0]).isEmpty()) {
             throw new NotFoundError("Session not found");
         }
@@ -63,14 +63,22 @@ export class SessionRepo extends BaseRepo {
         return result.rows.map((row: Record<string, any>) => SessionMapper.toSession(row));
     }
 
+    
     async revokeRefreshToken(token: string): Promise<ISession> {
         const { columns, tableName } = Tables.sessions;
-        const query = `UPDATE ${tableName} SET ${columns.isRevoked} = true, ${columns.updatedAt} = now() WHERE ${columns.refreshToken} = $1RETURNING *`;
+        const query = `UPDATE ${tableName} SET ${columns.isRevoked} = true, ${columns.updatedAt} = now() WHERE ${columns.refreshToken} = $1 RETURNING *`;
         const result = await this.query(query, [token]);
         if (Value.of(result.rows[0]).isEmpty()) {
             throw new NotFoundError("Session not found");
         }
         return SessionMapper.toSession(result.rows[0]);
+    }
+
+    async revokeAllSessions(userId: number): Promise<ISession[]> {
+        const { columns, tableName } = Tables.sessions;
+        const query = `UPDATE ${tableName} SET ${columns.isRevoked} = true, ${columns.updatedAt} = now() WHERE ${columns.userId} = $1 RETURNING *`;
+        const result = await this.query(query, [userId]);
+        return result.rows.map((row: Record<string, any>) => SessionMapper.toSession(row));
     }
 
 }
