@@ -7,6 +7,7 @@ export function asyncHandler(handler: RequestHandler): RequestHandler {
         try {
             await handler(req, res, next);
         } catch (e) {
+            console.log(e);
             next(e);
         }
     };

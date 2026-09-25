@@ -5,7 +5,8 @@ dotenv.config();
 
 const envSchema = z.object({
     PORT: z.coerce.number().int().positive(),
-
+    NODE_ENV: z.enum(["production", "development", "local"]),
+    
     DB_HOST: z.string().min(1),
     DB_PORT: z.coerce.number().int().positive(),
     DB_USER: z.string().min(1),
@@ -15,6 +16,7 @@ const envSchema = z.object({
     PASETO_PRIVATE_KEY: z.string().min(1),
     PASETO_PUBLIC_KEY: z.string().min(1),
 
+    EMAIL_HOST: z.string().min(1),
     EMAIL_USER: z.string().min(1),
     EMAIL_PORT: z.coerce.number().int().positive(),
     EMAIL_PASSWORD: z.string().min(1),

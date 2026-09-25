@@ -9,6 +9,7 @@ export class RedisService {
         this.client = createClient({
             url: ENV.REDIS_URL!
         });
+        this.client.connect();
 
         this.client.on('connect', () => {
             console.log('Redis connected');
@@ -104,3 +105,5 @@ export class RedisService {
         }
     }
 }
+
+export const redisService = new RedisService();

@@ -1,15 +1,17 @@
 import express from "express";
+import cors from "cors";
 import { router } from "./routes/index";
 import { errorHandler } from "./shared/middlewares/error.middleware";
 import { config } from "dotenv";
 import { ENV } from "./core/config/env.constant";
 import { parseDevice } from "./shared/middlewares/device.middleware";
-import { loggerMiddleware } from "./shared/middlewares/logger.middleware";
+// import { loggerMiddleware } from "./shared/middlewares/logger.middleware";
 
 config();
 
 const app = express();
-app.use(loggerMiddleware); 
+app.use(cors({ origin: "*" }));
+// app.use(loggerMiddleware);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

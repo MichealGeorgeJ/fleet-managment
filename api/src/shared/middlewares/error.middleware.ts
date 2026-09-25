@@ -11,7 +11,7 @@ import { AppError } from "../errors/common/app.error";
 export class ErrorMiddleware {
 
     handle = (e: Error, req: Request, res: Response, next: NextFunction): void => {
-
+        console.log(e);
         if (res.headersSent) {
             return next(e);
         }

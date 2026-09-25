@@ -19,7 +19,6 @@ export class DatabaseService {
                 rejectUnauthorized: false
             }
         });
-
         this.pool.on("connect", () => {
             console.log("PostgreSQL connected");
         });
@@ -68,3 +67,5 @@ export class DatabaseService {
         await this.pool.end();
     }
 }
+
+export const dbService = new DatabaseService();

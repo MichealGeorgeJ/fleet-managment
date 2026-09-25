@@ -1,5 +1,5 @@
 import type { PoolClient } from "pg";
-import { DatabaseService } from "../../core/database/services/db.service";
+import { DatabaseService, dbService } from "../../core/database/services/db.service";
 
 export interface QueryResult {
     rows: any[];
@@ -9,7 +9,7 @@ export class BaseRepo {
     private readonly db: DatabaseService;
 
     constructor() {
-        this.db = new DatabaseService();
+        this.db = dbService;
     }
 
     protected async query(

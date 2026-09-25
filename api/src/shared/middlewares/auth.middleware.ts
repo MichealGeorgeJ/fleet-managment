@@ -4,7 +4,7 @@ import { StatusCode } from "../enum/status-code.enum";
 import { PasetoUtils } from "../utils/paseto";
 import { ITokenPayload } from "../../modules/auth/auth.type";
 import { RedisKeys } from "../../core/redis/redis-key";
-import { RedisService } from "../../core/redis/redis.service";
+import { redisService, RedisService } from "../../core/redis/redis.service";
 
 export default async function authMiddleware(
   req: Request,
@@ -29,7 +29,7 @@ export default async function authMiddleware(
       return resHandler.sendError(StatusCode.UNAUTHORIZED, "Invalid or expired token");
     }
     const redisKey = `${RedisKeys.USER_SESSION}:${decoded?.user?.id}:${decoded.id}`;
-    const value = await new RedisService().get(redisKey);
+    const value = await redisService.get(redisKey);
 
     if (!value) {
       return resHandler.sendError(StatusCode.UNAUTHORIZED, "Session not found");

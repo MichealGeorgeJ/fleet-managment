@@ -35,7 +35,7 @@ export const logger = winston.createLogger({
         }),
 
         new winston.transports.File({
-            filename: "admin-panel.log",
+            filename: "logs/admin-panel.log",
             format: combine(
                 timestamp({
                     format: "YYYY-MM-DD HH:mm:ss",
@@ -73,10 +73,13 @@ export const loggerMiddleware = (
         
         if (res.statusCode >= 500) {
             logger.error(message);
+            console.error(message)
         } else if (res.statusCode >= 400) {
             logger.warn(message);
+            console.warn(message)
         } else {
             logger.info(message);
+            console.log(message)
         }
     });
 

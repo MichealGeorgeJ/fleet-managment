@@ -12,6 +12,7 @@ export class EMailService {
     private websiteUrl = ENV.WEB_URL;
     constructor() {
         this.transporter = Nodemailer.createTransport({
+            host: ENV.EMAIL_HOST,
             port: Number(ENV.EMAIL_PORT),
             secure: true,
             auth: {
@@ -51,3 +52,5 @@ export class EMailService {
     }
 
 }
+
+export const eMailService = new EMailService()

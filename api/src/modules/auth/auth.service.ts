@@ -78,7 +78,7 @@ export class AuthService {
         return { accessToken, refreshToken };
     }
 
-    async refreshToken(refreshToken: string, deviceInfo: IDeviceInfo): Promise<string> {
+    async refreshToken(refreshToken: string, deviceInfo: IDeviceInfo): Promise<{ accessToken: string }> {
         const [session, decodedToken] = await Promise.all([
             this.sessionRepo.getByRefreshToken(refreshToken),
             PasetoUtils.verifyToken(refreshToken),
@@ -113,7 +113,7 @@ export class AuthService {
             ),
         ]);
 
-        return accessToken;
+        return { accessToken };
     }
 
     async forgotPassword(email: string): Promise<string> {

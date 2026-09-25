@@ -1,30 +1,56 @@
-import { Geist, Geist_Mono } from "next/font/google"
+import type { Metadata } from "next";
+import {
+  Inter,
+  Space_Grotesk,
+  IBM_Plex_Mono,
+} from "next/font/google";
 
-import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
-import { cn } from "@/lib/utils";
+import "./globals.css";
+import Providers from "@/components/providers";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'})
-
-const fontMono = Geist_Mono({
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-  variable: "--font-mono",
-})
+  display: "swap",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const ibmPlexMono = IBM_Plex_Mono({
+  variable: "--font-ibm-plex-mono",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  display: "swap",
+});
+
+export const metadata: Metadata = {
+  title: "FleetOps",
+  description: "Fleet management platform",
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-      className={cn("antialiased", fontMono.variable, "font-sans", geist.variable)}
-    >
-      <body>
-        <ThemeProvider>{children}</ThemeProvider>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`
+          ${inter.variable}
+          ${spaceGrotesk.variable}
+          ${ibmPlexMono.variable}
+          font-sans
+        `}
+      >
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
-  )
+  );
 }
